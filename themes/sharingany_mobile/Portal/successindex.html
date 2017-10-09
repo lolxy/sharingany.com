@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+<link rel="stylesheet" href="__TMPL__Public/css/swiper.min.css">
+<link href="__TMPL__Public/css/success.css" type="text/css" rel="stylesheet" />
+</head>
+<body>
+<tc_include file="Public:top" />
+<?php
+ $term_id=4;
+ $terms=sp_get_child_terms($term_id); //获取子分类信息
+?>
+<div class="swiper-container">
+<ul class="success-nav flex-box split-line swiper-wrapper">
+	<li class='swiper-slide <if condition="$_GET['id'] eq 4">active</if>' id="nav-all"><a href="{:U('list/index',array('id'=>4))}">全部</a></li>
+    <foreach name="terms" item="vo" key="k">
+   	 <li class='swiper-slide <if condition="$_GET['id'] eq $vo['term_id']">active</if>'>
+     	<a href="{:U('list/index',array('id'=>$vo['term_id']))}">{$vo.name}</a>
+     </li>
+    </foreach>
+</ul>
+</div>
+    
+<div class="success-list">
+	<ul>
+<php>
+$id=$_GET['id'];
+$anlilist=sp_sql_posts_bycatid($id,"field:tid,term_id,post_url,post_excerpt,post_title,smeta;order:istop desc,listorder asc,post_modified desc;");
+</php>
+                            <foreach name="anlilist" item="vo">
+                            <php>$smeta=json_decode($vo['smeta'],true);
+                            $term=sp_get_term($vo['term_id']);     
+							$catename=$term['name'];
+                            </php>
+                            <li class="split-line type-inter">
+                            <a href="" class="flex-box">
+                                <div class="imgbox"><if condition="empty($smeta['thumb'])"> 
+                                        <img src="__TMPL__Public/images/default_tupian1.png" class="img-responsive" alt="{$vo.post_title}"/>
+                                    <else /> 
+                                        <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive img-thumbnail" alt="{$vo.post_title}" />
+                                    </if></div>
+                                <div class="success-info flex-1">
+                                    <div class="success-name flex-box">
+                                        <h1 class="type">{$vo.post_title}</h1>
+                                        <h1 class="flex-1 el">{$catename}</h1>
+                                    </div>
+                                    <p class="success-txt">{$vo.post_excerpt}</p>
+                                </div>
+                            </a>
+                        </li>
+                            </foreach>
+	</ul>
+</div>
+<tc_include file="Public:footer" />
+<script type="text/javascript" src="__TMPL__Public/js/swiper.jquery.min.js"></script>
+<script>
+var index=0;
+$(".swiper-container li").each(function() {
+    if($(this).hasClass("active")){
+		index =$(this).index();	
+	}
+});
+
+var swiper = new Swiper('.swiper-container', {
+	slidesPerView: 3.5,
+	paginationClickable: true,
+	spaceBetween:0,
+	initialSlide :index
+});
+</script>
+</body>
+</html>

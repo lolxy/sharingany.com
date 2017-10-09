@@ -1,0 +1,45 @@
+.progress{
+	padding-top:.5rem;
+}
+.progress-list>li{
+	padding:0 .5rem 1rem;
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	position: relative;
+}
+.progress-list>li::after{
+	content:'';
+	border-right:1px solid #e8e8e8;
+	position: absolute;
+	top: 0;
+	left: 3.9rem;
+	-webkit-transform: translateX(-1px) scaleX(.5);
+	        transform: translateX(-1px) scaleX(.5);
+	-webkit-transform-origin:100% 0;
+	transform-origin:100% 0;
+	height:100%;
+	z-index:1;
+}
+.progress-list li .year{
+	width:2rem;
+	font-size:.8rem;
+	line-height: .8rem;
+}
+.month-info{
+	display:-webkit-box;
+	display:-webkit-flex;
+	display: flex;
+	font-size:.52rem;
+	line-height: 1rem;
+}
+.month-info .month{
+	width:1.2rem;
+}
+.month-info .imgbox{
+	width:.4rem;
+	margin-top: .1rem;
+	margin-right:.4rem;
+	position: relative;
+	z-index: 2;
+}

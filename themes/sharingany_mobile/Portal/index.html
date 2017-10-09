@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:top" />
+<tc_include file="Public:nav" />
+<!-- 首页轮播图 --> 
+<php>
+$home_slides=sp_getslide("mobile_index_slide");
+$home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+</php>
+<div id="banner-1">
+  <div class="banner-nav">
+    <ul class="clearfix">
+      <foreach name="home_slides" item="vo">
+      	<li></li>
+      </foreach>
+    </ul>
+  </div>
+  <div class="banner-list">
+      <ul>
+        <foreach name="home_slides" item="vo">
+        <li>
+            <span>
+            <a href="{$vo.slide_url}">
+                <img alt="" src="{:sp_get_asset_upload_path($vo['slide_pic'])}">
+            </a>
+            </span>
+        </li>
+        </foreach>
+      </ul>
+  </div>
+</div>
+
+<div class="section threeservice">
+  <div class="main-tit hot split-line">
+    <h1>三大服务</h1>
+  </div>
+  <ul class="hot-list clearfix">
+  <li class="split-line"> 
+    <a href="{:leuu('page/index',array('id'=>'13'))}">
+     <div class="hot-img"><img src="/data/upload/20160723/5792cb69e602d.png" alt="创新模式互联网+软件产品"></div>
+     <h2 class="hot-tit">互联网+平台产品</h2>
+     <p>技术驱动商业创新</br>
+     研发符合企业需求的产品</p>
+      </a> 
+      </li>
+  
+  <li class="split-line"> 
+    <a href="{:leuu('page/index',array('id'=>'41'))}">
+     <div class="hot-img"><img src="/data/upload/20160723/5792cb9c86a4c.png" alt="政务与行业软件产品"></div>
+     <h2 class="hot-tit">行业应用系统</h2>
+     <p>政府、金融、国土、水利、环保</br>
+     研发符合行业需求智慧解决方案</p>
+      </a> 
+      </li>
+      
+    <li class="split-line"> 
+    <a href="{:leuu('page/index',array('id'=>'42'))}">
+     <div class="hot-img"><img src="/data/upload/20160723/5792cbc07f03a.png" alt="移动互联网营销服务"></div>
+     <h2 class="hot-tit">移动互联网营销</h2>
+     <p>网络营销助力品牌成长</br>
+     帮助企业快速传播价值</p>
+      </a> 
+      </li>
+  </ul>
+</div>
+
+<div class="blank15"></div>
+
+<!-- 热销产品 -->
+<div class="section">
+  <div class="main-tit hot split-line">
+    <h1>热销产品</h1>
+  </div>
+  <?php
+ $term_id=3;
+ $terms=sp_get_child_terms($term_id); //获取子分类信息
+?>
+<ul class="hot-list clearfix">
+	<foreach name="terms" item="vo">
+    <php>
+    $id = $vo['term_id'];
+    $where['recommended'] = 1;
+    $fuwu=sp_sql_posts("cid:$id;field:tid,term_id,post_title,post_excerpt,post_modified,smeta;order:listorder asc,post_modified desc;limit:0,2",$where);
+</php>
+    <foreach name="fuwu" item="vo" key="key">
+    <php>$smeta=json_decode($vo['smeta'],true);
+    	$jieshao = explode('|',$vo['post_excerpt']);
+    </php>
+    <li class="split-line"> <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+      <div class="hot-img"><if condition="empty($smeta['thumb'])"> 
+                    <img src="__TMPL__Public/images/default_tupian1.png" alt="{$vo.post_title}"/>
+                <else /> 
+                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}"/>
+                </if></div>
+     <h2 class="hot-tit">{$vo.post_title}</h2>
+     <p>
+      <foreach name="jieshao" item="vos">
+                {$vos}
+                </foreach>
+                </p>
+      </a> </li>
+    </foreach>
+  </foreach>
+    </ul>
+</div>
+
+<div class="blank15"></div>
+<!-- 成功案例 -->
+<div class="section">
+  <div class="main-tit flex-box split-line">
+    <h1 class="flex-1">成功案例</h1>
+    <a href="{:leuu('list/index',array('id'=>'4'))}" class="more">更多<i class="iconfont"></i></a> </div>
+  <div class="case">
+    <ul class="case-list clearfix">
+     <?php
+     $termid=4;
+     $cates=sp_get_child_terms($termid); //获取子分类信息
+     foreach($cates as $val){
+     	$alids[]=$val['term_id'];
+     }
+     $alids = implode(',',$alids);
+     $alids = !empty($alids)?$termid.','.$alids:$termid;
+    ?>
+<php>$anlilist=sp_sql_posts("cid:$alids;field:tid,term_id,smeta;order:listorder asc,post_modified desc;limit:0,6;",array('recommended'=>'1'));
+</php>
+		<foreach name="anlilist" item="vo">
+		<php>$smeta=json_decode($vo['smeta'],true);</php>
+		<li>
+            <div class="linkct">
+            <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+                <if condition="empty($smeta['thumb'])"> 
+                    <img src="__TMPL__Public/images/default_tupian1.png" class="img-responsive" alt="{$vo.post_title}"/>
+                <else /> 
+                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive img-thumbnail" alt="{$vo.post_title}" />
+                </if>
+            </a>
+            </div>
+        </li>
+        </foreach>
+    </ul>
+  </div>
+</div>
+<div class="blank15"></div>
+<div class="section">
+  <div class="main-tit flex-box split-line">
+    <h1 class="flex-1">众享资讯</h1>
+    <!--<a href="{:leuu('list/index',array('id'=>6))}" target="_blank" class="more">更多<i class="iconfont">&#xe605;</i></a>-->
+  </div>
+  <div class="news">
+    <ul class="news-list">
+    <php>$zxzxlist=sp_sql_posts("cid:6;field:tid,term_id,post_title,post_modified;order:listorder asc,recommended desc,post_modified desc;limit:0,5;");
+</php>
+		<foreach name="zxzxlist" item="vo">																											<li class="clearfix">
+    <a class="flex-box" href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+        <p class="time">{:date('Y-m-d',strtotime($vo['post_modified']))}</p>
+        <p class="news-info el flex-1">{:msubstr($vo['post_title'],0,24)}</p>
+        </a>
+</li>
+		</foreach>													
+    </ul>
+  </div>
+</div>
+
+<div class="blank15"></div>
+<div class="section">
+  <div class="main-tit flex-box split-line">
+    <h1 class="flex-1">产品动态</h1>
+    <!--<a href="{:leuu('list/index',array('id'=>7))}" target="_blank" class="more">更多<i class="iconfont">&#xe605;</i></a>-->
+  </div>
+  <div class="news">
+    <ul class="news-list">
+    <php>$zxzxlist=sp_sql_posts("cid:7;field:tid,term_id,post_title,post_modified;order:listorder asc,recommended desc,post_modified desc;limit:0,5;");
+</php>
+		<foreach name="zxzxlist" item="vo">																											<li class="clearfix">
+    <a class="flex-box" href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+        <p class="time">{:date('Y-m-d',strtotime($vo['post_modified']))}</p>
+        <p class="news-info el flex-1">{:msubstr($vo['post_title'],0,24)}</p>
+        </a>
+</li>
+		</foreach>													
+    </ul>
+  </div>
+</div>
+<script type="text/javascript" src="__TMPL__Public/js/index.js"></script>
+<tc_include file="Public:footer" />
+</body>
+</html>

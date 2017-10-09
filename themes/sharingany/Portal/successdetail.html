@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:nav"/>
+<link href="__TMPL__Public/css/peizi.css" type="text/css" rel="stylesheet">
+<php>
+$company_case=sp_getslide("company_case");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($company_case[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>
+<div class="blank30"></div>
+<div class="wrapper">  
+    <php>
+    echo htmlspecialchars_decode($post_content);
+    </php>
+</div>
+<div class="clear"></div>
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{$name} {$seo_title} {$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+</head>
+<body>
+<tc_include file="Public:nav" />
+<tc_include file="Public:scripts" />
+<link href="__TMPL__Public/css/about.css" type="text/css" rel="stylesheet">
+	<php>
+$humanResource=sp_getslide("humanResource");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($humanResource[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>
+<div class="blank30"></div>
+<div class="clearfix warp">
+	 <div class="f_r wrapper">
+<div class="fzlc ">
+	<div class="title successtitle join_title">
+		<ul class="tab-items add-items " id="add_items">
+        <li class="address_name active" rel="1">
+            <a href="javascript:void(0);" title="福州">福州</a>
+			<span></span>
+        </li>
+    </ul>
+	</div>
+	<div class="blank20"></div>
+	<div class="clearfix successlink tab-change common-show" rel="1">
+      <div class="f_l w165 chang_nav_2 pr" style="height:240px">
+            <ul class="chang_nav">
+                  <li class="current" rel="0">全部</li>
+                  <?php
+                     $term_id=5;
+                     $terms=sp_get_child_terms($term_id); //获取子分类信息
+                    ?>
+                  <foreach name="terms" item="vo" key="k">
+                  <li rel="{$k+1}">{$vo.name}</li>
+                  </foreach>
+             </ul>
+            <div class="Mask_top"></div>
+            <div class="Mask_bottom"></div>
+      </div>
+      <div class="f_r w817 job_con_all" style="width:1030px;">
+            <div class="job_title">
+                <ul>
+                    <li style="width:30%">职位名称</li>
+                    <li>职位类别</li>
+                    <li style="width:10%">招聘人数</li>
+                    <li>工作地点</li>
+                    <li>招聘时效</li>
+                </ul>
+            </div>
+				
+            <php>
+                $lists1 = sp_sql_posts_paged("cid:5;order:post_date DESC;",10);
+            </php>
+          <div class="job_con show" rel="0">
+            <dl>
+				<volist name="lists1['posts']" id="vos">
+              <dd>
+                <div class="job_table_title">
+                  <ul class="clearfix">
+                   <li>
+                   <if condition="$vos['recommended'] eq 1"><i class="icon iconfont hot"></i></if><if condition="!empty($vos['zp_xuanshang'])"><i class="icon iconfont shang"></i></if>
+                   <span style="display:inline-block;height:35px;line-height:35px;font-size:15px; vertical-align:top">{$vos['post_title']}</span>
+                   </li>
+                   <li>人才招聘</li>
+                   <li style="width:10%">{$vos.zp_count}</li>
+                   <li>{$vos.zp_address}</li>
+                   <li>{$zpdate = ($vos['zp_date']<='1970-01-01')?'长期有效':date("Y-m-d",strtotime($vos['zp_date']))}<span class="Arrow "></span></li>
+                 </ul>
+                </div>
+                <div class="detail">
+                      <if condition="!empty($vos['zp_xuanshang'])">
+                      <div class="shangtip">
+                      <span>【悬赏招聘】</span>
+                      {$vos.zp_xuanshang}
+                      </div>
+                      </if>
+                   <h6>【工作职责】</h6>
+                   <p>
+                  		{$vos.zp_zhize}
+                   </p>
+                    <h6>【岗位要求】</h6>
+                   <p>
+                    {$vos.zp_gangwei}
+                    </p>
+                    <if condition="!empty($vos['zp_xssm'])">
+                    <h6>【悬赏说明】</h6>
+                   <p>
+                    {$vos.zp_xssm}
+                    </p>
+                     </if>
+                </div>
+              </dd>
+              </volist>
+            </dl>
+          </div> 
+		  
+          <foreach name="terms" item="vo" key="k">
+            <php>
+                $id = $vo['term_id'];
+                $lists = sp_sql_posts_paged("cid:$id;order:post_date DESC;",10);
+            </php>
+          <div class="job_con show" rel="{$k+1}">
+            <dl>
+				<volist name="lists['posts']" id="vos">
+              <dd>
+                <div class="job_table_title">
+                  <ul class="clearfix">
+                   <li>
+                   <if condition="$vos['recommended'] eq 1"><i class="icon iconfont hot"></i></if><if condition="!empty($vos['zp_xuanshang'])"><i class="icon iconfont shang"></i></if>
+                   <span style="display:inline-block;height:35px;line-height:35px;font-size:15px; vertical-align:top">{$vos['post_title']}</span>
+                   </li>
+                   <li>{$vo.name}</li>
+                   <li style="width:10%">{$vos.zp_count}</li>
+                   <li>{$vos.zp_address}</li>
+                   <li>{$zpdate = ($vos['zp_date']<='1970-01-01')?'长期有效':date("Y-m-d",strtotime($vos['zp_date']))}<span class="Arrow "></span></li>
+                 </ul>
+                </div>
+                <div class="detail">
+                      <if condition="!empty($vos['zp_xuanshang'])">
+                      <div class="shangtip">
+                      <span>【悬赏招聘】</span>
+                      {$vos.zp_xuanshang}
+                      </div>
+                      </if>
+                   <h6>【工作职责】</h6>
+                   <p>
+                  		{$vos.zp_zhize}
+                   </p>
+                    <h6>【岗位要求】</h6>
+                   <p>
+                    {$vos.zp_gangwei}
+                    </p>
+                    <if condition="!empty($vos['zp_xssm'])">
+                    <h6>【悬赏说明】</h6>
+                   <p>
+                    {$vos.zp_xssm}
+                    </p>
+                     </if>
+                </div>
+              </dd>
+              </volist>
+            </dl>
+          </div> 
+          </foreach>
+	</div>		
+	</div><!--successlink end -->
+
+	<div class="blank43"></div>
+	
+	
+	<div class="clearfix Guarantee_con">
+		<img alt="图片无法显示哦~" src="__TMPL__Public/images/Guarantee_img.png" class="f_l" height="176" width="132">
+		<div class="clearfix f_l pl23 w824">
+			<ul>
+			     <li class="one">社会保险——五险（养老保险、医疗保险、工伤保险、失业保险、生育保险）</li>
+				 <li class="two">7.5小时工作，双休</li>
+				 <li class="three">定期出游计划</li>
+				 <li class="four">不定期吃喝玩乐一条龙</li>
+			     <li class="five">享受国家法定节假日</li>
+				 <li class="six">享受各种有薪假：婚假、产假、丧假、病假等</li>
+				  <li class="sever">产品分红、项目奖金与公司期权</li>
+				  <li class="eight">公司重视人才培养与学习，不定期会组织会议交流</li>
+				  <li class="nine">提供广阔的发展空间</li>
+			</ul>
+		</div>
+		<div class="blank20"></div>
+		<div class="Guarantee_conct">请发送简历至 {$company_email}，邮件主题为：“地点+职位+姓名”</div>
+	</div>
+</div>
+</div>
+</div>
+<script>
+	$(document).ready(function(){
+	itemchange();
+	$(".chang_nav_2 li").click(function(){
+		$(this).addClass("current").siblings().removeClass("current");
+		var rel=$(this).attr("rel");
+		if (rel==0) {
+			$(this).parents(".successlink").find(".job_con_all .job_con").addClass("show");
+		}else{
+		$(this).parents(".successlink").find(".job_con_all .job_con[rel='"+rel+"']").addClass("show").siblings().removeClass("show");
+		};
+	});
+	
+	$(".job_table_title").click(function(){
+		$(this).find(".Arrow").toggleClass("current");
+		$(this).siblings(".detail").toggle();
+	});
+});
+function itemchange(){
+	$("#add_items li").bind("click",function(){
+	    $("#add_items li").removeClass("active");
+	   $(this).addClass("active");
+	   var idx = $(this).attr("rel");
+	   $(".tab-change").fadeOut();
+	   $(".tab-change[rel='"+idx+"']").fadeIn(); 
+	});
+	}
+</script>
+  <tc_include file="Public:footer" /> 
+<!-- JavaScript -->
+<tc_include file="Public:scripts" />
+</body>
+</html>

@@ -1,0 +1,18 @@
+.nav_banner{
+  position: relative;
+}
+.nav_banner img{
+	display: block;
+  width:100%;
+}
+.wapzp{
+  position: absolute;
+  width: 100%;
+  bottom: 35px;
+  text-align: center;
+}
+.wapzp img{
+  float: none;
+  margin: 0 auto;
+  width: 17%;
+}

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:nav" />
+<script src="http://api.map.baidu.com/api?v=1.3"></script>
+<link href="__TMPL__Public/css/about.css" type="text/css" rel="stylesheet">
+<!--.............滚动的广告<script type="text/javascript" src="./app/Tpl/new/coupon/js/adv.js"></script>..............-->
+<php>
+$about_us=sp_getslide("about_us");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($about_us[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>
+<div class="blank30"></div>
+<div class="clearfix warp">
+<div class="wrapper">
+	    <div class="lx_title"></div>
+	<div class="clearfix" style=" padding:20px 0;">
+		<div class="f_l w591 l_con">
+			<p style=" color:#0579cb; font-size:26px; line-height:40px;">有问题？</p>
+			<p style=" font-size:15px; line-height:30px; color:#404040;">请拨打全国客服热线</p>
+			<p class="lx_telep">{$service_tel}</p>
+			<div class="clearfix">
+				<div class="lx_email f_l">邮箱：{$company_email}</div>
+			</div>
+            <div class="swhz">
+            	<p>商务合作</p>
+                <p class="lx_telep">{$shangwuhezuo}</p>
+            </div>
+		</div>
+		<div class="f_r wx_img_b">
+			<img alt="图片无法显示哦~" src="{:sp_get_asset_upload_path($site_erweima)}" class="f_l ml-115" height="115" width="115">
+			<p class="con">
+				扫描关注<br>微信公众平台
+			</p>
+		</div>
+	</div>
+		<div class="blank91"></div>
+		<div class="address">
+			   <div class=" change">
+			   	      <ul>
+			   	      	<li class="f_l pr ml279 current" rel="0">
+			   	      		<div class="position_img"></div>
+							<p>福州 • 马尾区</p>
+			   	      	</li>
+						<li class="f_r  pr mr279" rel="1">
+			   	      		<div class="pr position_img"></div>
+							<p>福州 • 仓山区</p>
+			   	      	</li>
+			   	      	<div class="blank"></div>
+			   	      </ul>
+			   	    <div class="blank"></div>
+			   </div>
+		</div>
+		<div class="blank"></div>
+		<div class="address_map mt12">
+			<ul>
+				<li class="pr current">
+					<img alt="图片无法显示哦~" src="__TMPL__Public/images/fz_mawei.png" height="530" width="1200">
+					<div class="address_info">
+						<p>
+						福州马尾地址：{$company_main_address}<br>
+						联系电话：{$service_tel}
+						</p>
+					</div>
+				</li>
+				<li class="pr">
+					<img alt="图片无法显示哦~" src="__TMPL__Public/images/fz_gulou.png" height="530" width="1200">
+					<div class="address_info">
+						<p>
+					    福州鼓楼地址：{$company_sub_address}<br>
+						联系电话：{$service_tel}
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+</div>
+</div>
+<div class="blank30"></div>
+<div class="blank30"></div>
+	  <script>
+	  	$(document).ready(function(){
+			$(".change ul li").click(function(){
+			  $(this).addClass("current").siblings().removeClass("current");
+			  $(".address_map ul li").eq($(this).attr("rel")).addClass("current").siblings().removeClass("current");
+			});
+		});
+	  </script>
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+</body>
+</html>

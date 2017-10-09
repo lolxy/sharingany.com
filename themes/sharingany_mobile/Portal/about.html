@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+<style>
+.wrapperbox{background-color: #fff;padding: 10px;}
+.wrapperbox img{max-width:100%}
+.abstract_at p{margin-bottom: 10px;}
+.abstract_at span{font-size: 14px;line-height: 24px;}
+.abstract_at h1{font-size: 24px;font-weight: bold;margin-bottom: 10px;}
+.abstract_at h1,.abstract_at h2{text-align: center;}
+.blank30{display:none}
+</style>
+</head>
+<body>
+<tc_include file="Public:top" />
+<link href="__TMPL__Public/css/us.css" type="text/css" rel="stylesheet">
+<div id="about-nav" class="split-line">
+	<ul class="flex-box">
+		<li class="flex-1 active"><a href="{:U('page/index',array('id'=>1))}l">众享简介</a></li>
+		<li class="flex-1 "><a href="{:U('page/index',array('id'=>4))}">联系我们</a></li>
+		<li class="flex-1 "><a href="{:U('list/index',array('id'=>5))}">加入我们</a></li>
+	</ul>
+</div>
+<div class="wrapperbox">
+<php>
+echo htmlspecialchars_decode($post_content);
+</php>
+</div>
+
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+<script>
+var tags = document.body.getElementsByTagName('*');
+for (var i = 0; i < tags.length; i++) {
+    tags[i].removeAttribute('style');
+}
+</script>
+</body>
+</html>

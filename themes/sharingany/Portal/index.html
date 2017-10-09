@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:nav" />
+<script>
+$(function(){
+	$(".showhide").bind('click',function(){
+		if($(this).next().attr('class')=='show'){
+				$(this).next().attr('class','');
+		}else{
+			$(this).next().attr('class','show');
+		}
+	});
+	$("#description_head li a").each(function(j){
+		$("#description #description_content div").css('border','none');
+			$(this).bind('click',function(){
+			$("#description_head li a").attr('class','');
+			$(this).attr('class','here');
+			$("#description #description_content div").css('display','none');
+			$("#description #description_content div").get(j).style.display='block';
+		});
+	});
+});
+</script> 
+<script type="text/javascript" src="__TMPL__Public/js/jquery_004.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/jquery_003.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/index.js"></script>
+<link href="__TMPL__Public/css/index.css" type="text/css" rel="stylesheet">
+<!--.............滚动的广告<script type="text/javascript" src="./app/Tpl/new/coupon/js/adv.js"></script>..............-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('.hd ul').css({'position':'absolute','left':($("#slideBox2").width()-$('.hd ul').width())/2});
+	$('.hd ul').show();
+	$("img",".main_adv_img").each(function(){
+       var img_str = $(this).attr("src");
+       $(this).hide();
+       $(this).parent().css({"background":"url("+img_str+") no-repeat center 0","width":"100%","height":"100%"});
+    });
+	jQuery("#slideBox2").slide({
+		mainCell:"#bd2 ul",
+		titCell:".hd li",
+		effect:"leftLoop",
+		easing:"swing",
+		trigger:"click",
+		triggerTime:"0",
+		interTime:5000,
+		delayTime:500,
+		autoPlay:true,
+		pnLoop: true,
+		prevCell:"#prev2",
+		nextCell:"#next2"
+	});
+//box_img start
+$(".section1 .box ").hover(function(){
+  var idx = $(this).attr("rel");
+  $(this).oneTime(10,function(){ 
+  	 $(".imgcover[rel='"+idx+"']").animate({opacity:'0.6'},100);
+  	 $(".t_f[rel='"+idx+"']").animate({top:'46px'},100);		
+  	 $(".l_o[rel='"+idx+"']").animate({left:'148px'},100);	
+  	 $(".r_f[rel='"+idx+"']").animate({right:'148px'},100);	 
+  });
+},function(){
+  var idx = $(this).attr("rel");
+  $(this).oneTime(10,function(){ 
+    $(".imgcover[rel='"+idx+"']").stop().animate({opacity:'0'},50);
+   	$(".t_f[rel='"+idx+"']").stop().animate({top:'-50px'},50);
+    $(".l_o[rel='"+idx+"']").stop().animate({left:'-80px'},50);
+    $(".r_f[rel='"+idx+"']").stop().animate({right:'-80px'},50);
+  });
+        
+});
+ 
+});
+ 
+  
+ </script>
+
+<php>
+$home_slides=sp_getslide("index_slider");
+$home_slides=empty($home_slides)?$default_home_slides:$home_slides;
+</php>
+
+<div id="slideBox2" class="main_adv_box">
+	<div class="main_adv_img" id="bd2">
+        <ul>
+            <foreach name="home_slides" item="vo">
+			<li>
+				<span>
+				<a style="background: transparent url({:sp_get_asset_upload_path($vo['slide_pic'])}) no-repeat scroll center 0px; width: 100%; height: 100%;" href="{$vo.slide_url}">
+					<img style="display: none;" alt="" src="{:sp_get_asset_upload_path($vo['slide_pic'])}">
+				</a>
+				</span>
+			</li>
+            </foreach>
+		</ul>
+	</div>
+	<div class="hd">
+        <ul>
+        	<foreach name="home_slides" item="vo">
+               <li></li>
+            </foreach>
+        </ul>
+	</div>
+	<a style="left: -52px;" class="prev" id="prev2" href="javascript:void(0)"></a>
+	<a style="right: -52px;" class="next" id="next2" href="javascript:void(0)"></a>
+	
+</div>
+<div class="blank"></div>
+<div class="section1">
+<div class="warp">
+	<div class="main_title">
+		<div class="title_img"></div>
+		<div class="title_tit">
+			<tg>从技术、战略、资本各方面提供全方位的创新服务，帮助企业互联网化升级</tg>
+		</div>
+	</div>
+	<div class="boxes">
+	<!-- 焦点图 -->
+    <div id="slideBox" class="slideBox">
+    <div class="bd">
+    <ul>
+            <li>
+                <div class="box" rel="1">
+                    <div class="box_img">
+                        <a href="{:leuu('page/index',array('id'=>'13'))}">
+                        <div class="imgcover" rel="1"></div>
+                        <div class="t_f" rel="1">创新模式互联网+软件产品</div>
+                        <div class="l_o" rel="1"></div>
+                        <div class="r_f" rel="1"></div>
+                        <img src="/data/upload/20160723/5792cb69e602d.png" alt="创新模式互联网+软件产品">
+                        </a>
+                    </div>
+                    <div class="box_txt">
+                        <a href="{:leuu('page/index',array('id'=>'13'))}">
+                        <h1>创新模式互联网+软件产品</h1>
+                        </a>
+                        <h2>技术驱动商业创新</h2>
+                        <h3>研发符合企业需求的产品</h3>
+                        <div class="blank15"></div>
+                        <a class="btna btn_a btn_green" href="{:leuu('page/index',array('id'=>'13'))}">服务介绍</a>
+                        <a class="btna btn_b b_g" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$company_qq}&site=qq&menu=yes">马上咨询</a>
+                        <div class="blank"></div>
+                    </div>
+                </div>
+			</li>
+            
+            <li>
+                <div class="box" rel="2">
+                    <div class="box_img">
+                        <a href="{:leuu('page/index',array('id'=>'41'))}">
+                        <div class="imgcover" rel="2"></div>
+                        <div class="t_f" rel="2">政务与行业软件产品</div>
+                        <div class="l_o" rel="2"></div>
+                        <div class="r_f" rel="2"></div>
+                        <img src="/data/upload/20160723/5792cb9c86a4c.png" alt="政务与行业软件产品">
+                        </a>
+                    </div>
+                    <div class="box_txt">
+                        <a href="{:leuu('page/index',array('id'=>'41'))}">
+                        <h1>政务与行业软件产品</h1>
+                        </a>
+                        <h2>政府、金融、国土、水利、环保</h2>
+                        <h3>研发符合行业需求智慧解决方案</h3>
+                        <div class="blank15"></div>
+                        <a class="btna btn_a btn_green" href="{:leuu('page/index',array('id'=>'41'))}">服务介绍</a>
+                        <a class="btna btn_b b_g" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$company_qq}&site=qq&menu=yes">马上咨询</a>
+                        <div class="blank"></div>
+                    </div>
+                </div>
+			</li>
+            
+            <li>
+                <div class="box" rel="3" style="margin-right:0;">
+                    <div class="box_img">
+                        <a href="{:leuu('page/index',array('id'=>'42'))}">
+                        <div class="imgcover" rel="3"></div>
+                        <div class="t_f" rel="3">移动互联网营销服务</div>
+                        <div class="l_o" rel="3"></div>
+                        <div class="r_f" rel="3"></div>
+                        <img src="/data/upload/20160723/5792cbc07f03a.png" alt="移动互联网营销服务">
+                        </a>
+                    </div>
+                    <div class="box_txt">
+                        <a href="{:leuu('page/index',array('id'=>'42'))}">
+                        <h1>移动互联网营销服务</h1>
+                        </a>
+                        <h2>网络营销助力品牌成长</h2>
+                        <h3>帮助企业快速传播价值</h3>
+                        <div class="blank15"></div>
+                        <a class="btna btn_a btn_green" href="{:leuu('page/index',array('id'=>'42'))}">服务介绍</a>
+                        <a class="btna btn_b b_g" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$company_qq}&site=qq&menu=yes">马上咨询</a>
+                        <div class="blank"></div>
+                    </div>
+                </div>
+			</li>
+       														
+	</ul>
+	</div>
+	<div class="hd">
+       <ul></ul>
+    </div>
+	</div>
+	<div class="blank"></div>
+	</div>
+</div>	
+<div class="blank30"></div>
+</div>
+<div class="section2">
+<div class="warp">
+	<div class="s_tit"><h1>公司优势</h1><span>深耕互联网产业，坚持技术创新与商业模式创新</span></div>
+	<div class="blank15"></div>
+	<div class="boxes">
+		<div class="box">
+		<div class="blank15"></div>
+		<div class="box_img">
+			<h1>10+</h1>
+			<h2>创新产品</h2>
+		</div>
+		<div class="box_txt">
+			<div class="b_c">
+			拥有<em>10</em>余款互联网创新产品<br>
+			自主知识产权
+			</div>
+			<div class="blank15"></div>
+		</div>
+		</div>
+		<div class="box">
+		<div class="blank15"></div>
+		<div class="box_img">
+			<h1>3</h1>
+			<h2>产品&服务</h2>
+		</div>
+		<div class="box_txt">
+			<div class="b_c">
+			<em>3</em>大类产品&服务<br>
+			为您提供一站式互联网解决方案
+			</div>
+			<div class="blank15"></div>
+		</div>
+		</div>
+		<div class="box">
+		<div class="blank15"></div>
+		<div class="box_img">
+			<h1>20+</h1>
+			<h2>专业团队</h2>
+		</div>
+		<div class="box_txt">
+			<div class="b_c">
+			<em>20</em>余名互联网领域<em>10</em>余年从业经验<br>
+            的专业团队
+			</div>
+			<div class="blank15"></div>
+		</div>
+		</div>
+	<div class="blank"></div>
+	</div>
+</div>	
+</div>
+<div class="section3">
+<div class="warp">
+	<div class="s_tit"><h1>合作客户</h1><span>为企业客户实现商业与技术的完美融合</span></div>
+	<div class="blank30"></div>
+	<div class="fff anlibox">
+		<div class="clearfix" style=" width:100%; overflow:hidden; margin:0 auto;">
+			<ul>
+     <?php
+     $termid=4;
+     $cates=sp_get_child_terms($termid); //获取子分类信息
+     foreach($cates as $val){
+     	$alids[]=$val['term_id'];
+     }
+     $alids = implode(',',$alids);
+     $alids = !empty($alids)?$termid.','.$alids:$termid;
+    ?>
+<php>$anlilist=sp_sql_posts("cid:$alids;field:tid,term_id,smeta;order:listorder asc,post_modified desc;limit:5;",array('recommended'=>'1'));
+</php>
+		<foreach name="anlilist" item="vo">
+		<php>$smeta=json_decode($vo['smeta'],true);</php>
+		<li class="f_l link">
+            <div class="linkct">
+            <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+                <if condition="empty($smeta['thumb'])"> 
+                    <img src="__TMPL__Public/images/default_tupian1.png" class="img-responsive" alt="{$vo.post_title}"/>
+                <else /> 
+                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive img-thumbnail" alt="{$vo.post_title}" />
+                </if>
+            </a>
+            </div>
+        </li>
+        </foreach>
+			</ul>
+		</div>
+		
+	</div>
+	<div class="blank30"></div>
+		<a class="more" target="_blank" href="{:leuu('list/index',array('id'=>4))}">更多案例 <em>&gt;</em></a>
+	<div class="blank30"></div>
+	<div class="blank15"></div>
+</div>
+<div class="article">
+	<div class="warp">
+	<div class="article_m article_m_l">
+			<div class="article_m_title clearfix">
+				<span>众享资讯</span>
+				<a href="{:leuu('list/index',array('id'=>6))}" target="_blank" class="f_r view_more">更多&gt;</a>
+			</div>
+			<div class="article_m_content">
+            <php>$zxzx=sp_sql_posts("cid:6;field:tid,term_id,post_title,post_excerpt,post_modified,smeta;order:listorder asc,post_modified desc;limit:1;",array('istop'=>'1'));
+</php>
+		<foreach name="zxzx" item="vo">
+		<php>$smeta=json_decode($vo['smeta'],true);</php>
+				<div class="headlines clearfix">
+						<a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}" target="_blank">
+							<div class="img">
+								<a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+                <if condition="empty($smeta['thumb'])"> 
+                    <img src="__TMPL__Public/images/default_tupian1.png" alt="{$vo.post_title}" width="180" height="117"/>
+                <else /> 
+                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}" width="180" height="117"/>
+                </if>
+            </a>
+							</div>
+							<div class="text">
+								<h3><a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{$vo.post_title}</a></h3>
+								<div class="brief"><a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{:msubstr($vo['post_excerpt'],0,32)}</a></div>
+								<div class="time">
+									<span class="time_span">{$vo.post_modified}</span>
+								</div>
+							</div>
+						</a>
+					</div>
+           </foreach>         																																											<div class="footlines">
+					<ul>
+						<php>$zxzxlist=sp_sql_posts("cid:6;field:tid,term_id,post_title,post_modified;order:listorder asc,post_modified desc;limit:0,4;",array('recommended'=>'1'));
+</php>
+		<foreach name="zxzxlist" item="vo">																											<li class="clearfix">
+    <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{:msubstr($vo['post_title'],0,24)}</a>
+    <span>{:date('Y-m-d',strtotime($vo['post_modified']))}</span>
+</li>
+		</foreach>																																								
+					</ul>
+				</div>
+			</div>
+		</div>
+						<div class="article_m article_m_r">
+			<div class="article_m_title clearfix">
+				<span>产品动态</span>
+				<a href="{:leuu('list/index',array('id'=>7))}" target="_blank" class="f_r view_more">更多&gt;</a>
+			</div>
+			<div class="article_m_content">
+															<php>$cpdt=sp_sql_posts("cid:7;field:tid,term_id,post_title,post_excerpt,post_modified,smeta;order:listorder asc,post_modified desc;limit:1;",array('istop'=>'1'));
+</php>
+		<foreach name="cpdt" item="vo">
+		<php>$smeta=json_decode($vo['smeta'],true);</php>
+				<div class="headlines clearfix">
+						<a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}" target="_blank">
+							<div class="img">
+								<a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">
+                <if condition="empty($smeta['thumb'])"> 
+                    <img src="__TMPL__Public/images/default_tupian1.png" alt="{$vo.post_title}" width="180" height="117"/>
+                <else /> 
+                    <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}" width="180" height="117"/>
+                </if>
+            </a>
+							</div>
+							<div class="text">
+								<h3><a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{$vo.post_title}</a></h3>
+								<div class="brief"><a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{:msubstr($vo['post_excerpt'],0,32)}</a></div>
+								<div class="time">
+									<span class="time_span">{$vo.post_modified}</span>
+								</div>
+							</div>
+						</a>
+					</div>
+           </foreach>         																																											<div class="footlines">
+					<ul>
+						<php>$cpdtlist=sp_sql_posts("cid:7;field:tid,term_id,post_title,post_modified;order:listorder asc,post_modified desc;limit:0,4;",array('recommended'=>'1'));
+</php>
+		<foreach name="cpdtlist" item="vo">
+        <li class="clearfix">
+    <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}">{:msubstr($vo['post_title'],0,24)}</a>
+    <span>{:date('Y-m-d',strtotime($vo['post_modified']))}</span>
+</li>
+		</foreach>																																								
+					</ul>
+				</div>
+			</div>
+		</div>
+			</div>
+</div>
+</div>
+<tc_include file="Public:footer" />
+<!--<div style="width:100%;height:100%;display:table;position:fixed;left:0;top:0;z-index:10000" class="maskbox">
+	<div style="width:100%;height:100%;background:#000000;opacity:0.85;filter:alpha(opacity=85)"></div>
+    <div style="width:900px;height:50px;line-height:50px;font-size:50px;text-align:center;color:#ffffff;position:absolute;top:50%;left:50%;margin-left:-450px;margin-top:-25px;">
+    	网站正在努力改版中，敬请期待！<span class="closess" title="点我可关闭哦！！！" style="display:inline-block;width:50px;height:50px;text-align:center;line-height:50px;cursor:pointer;color:#fff;font-size:50px;">&times;</span>
+    </div>
+</div>-->
+<script>
+$('.closess').click(function(){
+	$('.maskbox').hide();
+	});
+</script>
+</body></html>

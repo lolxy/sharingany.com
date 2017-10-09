@@ -1,0 +1,47 @@
+{:hook('footer')}
+<div id="footer">
+  <div class="code-box">
+    <p>关注我们</p>
+    <div class="imgbox code"><img src="{:sp_get_asset_upload_path($site_erweima)}"></div>
+  </div>
+  <div class="copy-box flex-1">
+    <p>服务热线：{$service_tel}</p>
+    <p>{$site_copyright}</p>
+    <p>{$site_icp}</p>
+  </div>
+</div>
+<!-- 导航 -->
+<div id="footer-nav">
+  <ul class="flex-box">
+    <li class="flex-1"> <a href="{$site_host}"> <i class="iconfont"></i>
+      <p>返回首页</p>
+      </a> </li>
+    <li class="flex-1"> <a href="{:U('list/index',array('id'=>3))}"> <i class="iconfont"></i>
+      <p>众享产品</p>
+      </a> </li>
+    
+    <li class="flex-1"> <a id="footer-qs" href="{:U('page/index',array('id'=>4))}"> <i class="iconfont"></i>
+      <p>联系我们</p>
+      </a> </li>
+    <li class="flex-1"><a href="tel:18259170940" id="header-phone"><i class="iconfont flex-1"></i>
+      <p>手机拨号</p>
+      </a> </li>
+  </ul>
+</div>
+<div class="code-click flex-box">
+<img src="{:sp_get_asset_upload_path($site_erweima)}"></div>
+<script>
+$("#nav a").each(function(){
+	if ($(this)[0].href == String(window.location) && $(this).attr('href')!="") {
+		$(this).parents("li").addClass("active").siblings("li").removeClass("active");
+	}
+});
+
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cebfbdd88ef2a80b5d0576663646d620";
+  var s =document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();
+</script>

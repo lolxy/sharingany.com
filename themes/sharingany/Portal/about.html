@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:nav" />
+<link href="__TMPL__Public/css/about.css" type="text/css" rel="stylesheet">
+<!--.............滚动的广告<script type="text/javascript" src="./app/Tpl/new/coupon/js/adv.js"></script>..............-->
+<php>
+$about_us=sp_getslide("about_us");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($about_us[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>
+<div class="blank30"></div>
+<div class="wrapper">
+        
+        <php>
+        echo htmlspecialchars_decode($post_content);
+        </php>
+        <!--<div class="fzlc">
+            <div class="title abstracttitle"></div>
+            <div class="ovhide mt31 abstract_at">
+                <div class="abstract_s1">
+                    <div class="f_l w800">
+                        <p>福建方维信息科技有限公司(www.fanwe.com 简称方维），创立于2008年1月，注册资本1000万。是一家以互联网创新模式软件产品及解决方案为核心，标准化管理、快速发展的高新技术企业。企业下设重庆分公司，拥有员工百余人，拥有一批互联网领域10余年从业经验的专业团队。</p>
+                        <p>在“互联网+”战略成为企业经济增长新引擎的形式下，方维洞察创业者与企业在“互联网+”进程中的不同需求（互联网化商业模式创新、传统企业转型策略、企业营销互联网化与信息化指导等），依托8年多的互联网核心技术沉淀，为创业者与企业提供符合企业“互联网+”战略的软件产品设计、开发以及提供互动营销云服务，以技术创新驱动企业“互联网+”战略的落地。</p>
+                        <p>目前方维已与兴业资本达成资本合作，完成首轮融资。未来，方维将继续围绕以互联网为核心的战略目标，在互联网创新模式产品、互动营销云平台、大数据等业务领域做全方位快速的布局。</p>
+                    </div>
+                    <div class="f_r" style="max-width:370px;">
+                        <img alt="图片无法显示哦~" src="http://www.jikesoft.com/app/Tpl/new/coupon/images/abstract_img1.png">
+                    </div>
+                    <div class="blank"></div>
+                </div>
+                <div class="blank15"></div>
+                <div class="be_line"></div>
+                <div class="blank15"></div>
+                <div class="blank15"></div>
+                <div class="abstract_s2">
+                    <div class="f_l" style="padding-right:25px">
+                        <img alt="图片无法显示哦~" src="http://www.jikesoft.com/app/Tpl/new/coupon/images/abstract_img2.png">
+                    </div>
+                    <div class="f_l " style="max-width:648px;">
+                        <h1>敏锐的行业前瞻性</h1>
+                        <p>方维设立战略研究室，与互联网各领域内从业者与专家保持密切沟通，形成方维独特的市场敏锐和前瞻性<br>先于全国市场，首家推出“方维众筹”、“方维P2P”、“方维O2O”等创新产品，并取得骄人的市场业绩！</p>
+                        <h1>雄厚的自主产品研发实力</h1>
+                        <p>有一支从业软件开发10余年、反应迅速、讲求团队合作的专业技术团队，奠定开发实力的高起点<br>多年互联网行业经验，拥有30余款互联网与移动互联网相关产品的自主知识产权！</p>
+                        <h1>全方位的产业链服务</h1>
+                        <p>战略先行：在企业创立或转型前期，梳理商业模式、规划技术平台、进行落地执行指导<br>技术支撑：根据战略中规划的技术平台，依托我们的研发实力，开发切合您需求与发展的软件产品<br>资本引入：协助您进行融资，实现企业快速发展、建立行业壁垒，让您走在行业竞争者前列！</p>
+                        <h1>强大的专业团队  </h1>
+                        <p>拥有一支由软件技术开发、商业营销策划、投融资等各行业资深专家及从业人员组成的专业团队<br>我们洞察市场、深谙技术、引入资本运作，旨在为不同需求、不同发展阶段的客户解决最实际的问题！</p>
+                    </div>
+                    <div class="blank"></div>
+                </div>
+                <div class="blank30"></div>
+                <div class="be_line"></div>
+                <div class="blank30"></div>
+                <div class="abstract_s3">
+                    <div class="abstract_s3tit"></div>
+                    <div class="">
+                        <div class="boxes">
+                        <div class="box">
+                        <div class="box_img abstract_s3img1"></div>
+                        <div class="box_txt">
+                            <h1>快速稳定</h1>
+                            <h2>天下武功唯快不破，打造互联网速度</h2>
+                            <div class="blank15"></div>
+                        </div>
+                        </div>
+                        <div class="box">
+                        <div class="box_img abstract_s3img2"></div>
+                        <div class="box_txt">
+                            <h1>极致响应</h1>
+                            <h2>极致的思维、产品、服务，您本就应该坐享其成</h2>
+                            <div class="blank15"></div>
+                        </div>
+                        </div>
+                        <div class="box">
+                        <div class="box_img abstract_s3img3"></div>
+                        <div class="box_txt">
+                            <h1>谦卑为怀</h1>
+                            <h2>对事待人常有谦卑之心，只为脱颖而出</h2>
+                            <div class="blank15"></div>
+                        </div>
+                        </div>
+                    <div class="blank"></div>
+                    </div>
+                    </div>
+                </div>
+                <div class="blank30"></div>
+                <div class="be_line"></div>
+                <div class="blank30"></div>
+                <div class="abstract_s4">
+                    <div class="abstract_s4tit"></div>
+                    <div class="blank10"></div>
+                    <div class="fack">
+                        我们是一群对互联网狂热的人。我们的成员由用户调研、交互设计、视觉设计、软件工程师、营销策划、投融资服务专家组成。<br>
+                        博学，深知，敏锐，创新，信任，积极，责任感，对细节的尊重，挑战权威...是我们的关键词。<br>
+                        深度挖掘客户需求，让我们的创新产品与极致服务帮助每个领域互联网化！<br>
+                    </div>
+                    <div class="blank20"></div>
+                    <div class="abstract_s4con">
+                        <div class="s4con1">
+                        <img alt="图片无法显示哦~" src="http://www.jikesoft.com/app/Tpl/new/coupon/images/photo.png">
+                        <a href="http://www.jikesoft.com/index.php?ctl=job" class="joinus"></a>
+                        <div class="blank"></div>
+                        </div>
+                        <div class="s4con2"></div>
+                    </div>
+                </div>
+                <div class="abstract_s5">
+                    <div class="blank30"></div>
+                    <div class="abstract_s5tit"></div>
+                    <div class="blank20"></div>
+                    <div class="abstract_s5con">
+                        <img alt="图片无法显示哦~" src="http://www.jikesoft.com/app/Tpl/new/coupon/images/workplase.png">
+                    </div>
+                </div>
+            </div>
+        </div>-->
+</div>
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+</body>
+</html>

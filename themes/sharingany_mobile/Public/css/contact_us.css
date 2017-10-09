@@ -1,0 +1,80 @@
+.contact-hd{
+	padding:.9rem .5rem .7rem;
+	text-align: center;
+	border-bottom:1px dotted #e8e8e8;
+}
+.contact-hd .main-tit{
+	font-size:.8rem;
+	line-height: 1.4rem;
+}
+.contact-hd .s-tit{
+	font-size:.72rem;
+	line-height: 1.3rem;
+}
+.contact-way{
+	padding:0 .5rem;
+}
+.contact-way .service-phone i{
+	font-size:.6rem;
+}
+.contact-way .service-phone p{
+	line-height: .9rem;
+	color:#999;
+}
+.contact-way .service-phone a{
+	font-size:1rem;
+	line-height: 1.2rem;
+}
+.contact-way .code-txt{
+	color:#999;
+	line-height: .7rem;
+	font-size:.4rem;
+	margin-right: .4rem;
+}
+.contact-way .imgbox{
+	width:2.7rem;
+}
+.phone-list li a{
+	height:1.6rem;
+	padding:0 .5rem;
+	color:#444;
+}
+.phone-list li a i{
+	color:#d7d7d7;
+	font-size:.48rem;
+	margin-left: .2rem;
+}
+.address{
+	padding:0rem .5rem 0;
+}
+.address .add-hd{
+	color:#999;
+	line-height: 1.5rem;
+}
+.address .add-hd i{
+	font-size:.6rem;
+}
+.address .add-info{
+	color:#444;
+	line-height: .9rem;
+}
+.add-tab{
+	padding:.8rem 0 .5rem;
+}
+.add-tab ul{
+	border-radius:5px;
+	border:1px solid #3d78d1;
+	color:#3d78d1;
+	overflow: hidden;
+}
+.add-tab ul li{
+	line-height: 1rem;
+	text-align: center;
+}
+.add-tab ul .active{
+	color:#fff;
+	background:#3d78d1;
+}
+.map .chongqing{
+	display:none;
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{$name} {$seo_title} {$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+</head>
+<body>
+<tc_include file="Public:nav" />
+<link href="__TMPL__Public/css/article_cate.css" type="text/css" rel="stylesheet">
+<style type="text/css">
+	.article_cate{
+		margin-top: 20px;
+	}
+	.article_cate a{text-decoration:none}
+	.article_banner{
+		display: block;
+    width: 100%;
+    height: 130px;
+    margin: 0 auto;
+    text-align: center;
+    background: url(__TMPL__Public/images/articlecatbanner.jpg) no-repeat center;
+	}
+</style>
+<!--<a class="article_banner" href="#"></a>-->
+<div class="article_cate clearfix">
+	<div class="article_cate_l">
+		<div class="article_cate_l_m article_cate_l_m_b">
+			<div class="article_cate_l_m_title">
+				<span>最新资讯</span>
+			</div>
+			<div class="article_cate_l_m_content">
+				<ul>
+                <php>$posts=sp_sql_posts("cid:6,7;field:tid,term_id,post_title,post_modified,smeta;order:listorder asc,post_modified desc;limit:8;");
+</php>
+    <foreach name="posts" item="vo" key="key">
+    <php>$smeta=json_decode($vo['smeta'],true);</php>
+                        <li>
+							<a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}" target="_blank">
+                            <if condition="empty($smeta['thumb'])"> 
+                            <img src="__TMPL__Public/images/default_tupian1.png" alt="{$vo.post_title}"class="article_cate_l_m_content_l" height="60" width="80"/>
+                        <else /> 
+                            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}"class="article_cate_l_m_content_l" height="60" width="80"/>
+                        </if>
+							<div class="article_cate_l_m_content_r">
+								<span>{:msubstr($vo['post_title'],0,50)}</span>
+							</div>
+						</a>
+					</li>
+                    </foreach>
+				</ul>
+			</div>
+		</div>
+				<!--<div class="adv_1">
+			<div class="wenzhang_adv_bg">
+			<a href="http://www.fanwe.com/rongzi"><img alt="图片无法显示哦~" src="__TMPL__Public/images/adv_wzleft.png"></a>	
+			</div>
+		</div>-->
+	</div>
+	<div class="article_cate_r">
+		<div class="article_nav clearfix">
+			<div class="article_nav_l">
+                <php>
+                    $tag='field:term_id,name;order:path asc,listorder desc;where:taxonomy="article";';
+                    $terms=sp_get_terms($tag); 
+                </php>
+                <foreach name="terms" item="vo">
+                   <a href="{:leuu('list/index',array('id'=>$vo['term_id']))}" <if condition="$cat_id eq $vo['term_id']">class="cur"</if>>{$vo.name}</a>
+                </foreach>
+			</div>
+			<form action="index.php?ctl=article_cate&amp;act=index" method="post" style=" display:none;">
+				<div class="article_nav_r">
+					<input name="key" class="input_search" type="text">
+					<button type="submit" class="btn_search"></button>
+					<input name="redirect" value="1" type="hidden">
+					<input name="id" value="35" type="hidden">
+				</div>
+			</form>
+			
+		</div>
+		<div class="article_content">
+			<ul class="article_list">
+            <php>
+					$lists = sp_sql_posts_paged("cid:$cat_id;order:post_date DESC;",10);
+				</php>
+				<volist name="lists['posts']" id="vo">
+				<php>
+					$smeta=json_decode($vo['smeta'], true);
+				</php>
+				
+                <li>
+                    <a href="{:leuu('article/index',array('id'=>$vo['tid'],'cid'=>$vo['term_id']))}" target="_blank">
+                        <div class="item_article_l">
+                        <if condition="empty($smeta['thumb'])"> 
+                            <img src="__TMPL__Public/images/default_tupian1.png" alt="{$vo.post_title}" height="160" width="235"/>
+                        <else /> 
+                            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" alt="{$vo.post_title}" height="160" width="235"/>
+                        </if>
+                        </div>
+                        <div class="item_article_r">
+                            <h3>{$vo.post_title}</h3>
+                            <div class="brief">
+                                <span></span>
+                            </div>
+                            <div class="time">
+                                <span class="time_span">{:date('Y-m-d',strtotime($vo['post_date']))}</span>
+                                <span class="view_span">{$vo.post_hits}</span>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+				</volist>
+				<div class="pagination"><ul>{$lists['page']}</ul></div>
+			</ul>
+		</div>
+	</div>
+</div>
+
+  <tc_include file="Public:footer" /> 
+<!-- JavaScript -->
+<tc_include file="Public:scripts" />
+</body>
+</html>

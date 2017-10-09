@@ -1,0 +1,103 @@
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/wind.js"></script>
+<script src="__TMPL__Public/simpleboot/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/js/frontend.js"></script>
+<script src="__TMPL__Public/js/lxb_002.js" charset="utf-8"></script>
+<script src="__TMPL__Public/js/hm_002.js"></script>
+<script src="__TMPL__Public/js/lxb.js" charset="utf-8"></script>
+<script src="__TMPL__Public/js/localStorage.js" async="" charset="utf-8" type="text/javascript"></script>
+<script src="__TMPL__Public/js/Panel.js" async="" charset="utf-8" type="text/javascript"></script>
+<script type="text/javascript" src="__TMPL__Public/js/jquery_002.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/lazyload.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/jquery.js"></script>
+	<script type="text/javascript" src="__TMPL__Public/js/public.js"></script>
+<script type="text/javascript" src="__TMPL__Public/js/slowscroll.js"></script>
+	<script>
+	$(function(){
+		$('body').on('touchstart.dropdown', '.dropdown-menu', function (e) { e.stopPropagation(); });
+		
+		$("#main-menu li.dropdown").hover(function(){
+			$(this).addClass("open");
+		},function(){
+			$(this).removeClass("open");
+		});
+		
+		$.post("{:U('user/index/is_login')}",{},function(data){
+			if(data.status==1){
+				if(data.user.avatar){
+					$("#main-menu-user .headicon").attr("src",data.user.avatar.indexOf("http")==0?data.user.avatar:"__UPLOAD__avatar/"+data.user.avatar);
+				}
+				
+				$("#main-menu-user .user-nicename").text(data.user.user_nicename!=""?data.user.user_nicename:data.user.user_login);
+				$("#main-menu-user li.login").show();
+				
+			}
+			if(data.status==0){
+				$("#main-menu-user li.offline").show();
+			}
+			
+		});	
+		;(function($){
+			$.fn.totop=function(opt){
+				var scrolling=false;
+				return this.each(function(){
+					var $this=$(this);
+					$(window).scroll(function(){
+						if(!scrolling){
+							var sd=$(window).scrollTop();
+							if(sd>100){
+								$this.fadeIn();
+							}else{
+								$this.fadeOut();
+							}
+						}
+					});
+					
+					$this.click(function(){
+						scrolling=true;
+						$('html, body').animate({
+							scrollTop : 0
+						}, 500,function(){
+							scrolling=false;
+							$this.fadeOut();
+						});
+					});
+				});
+			};
+		})(jQuery); 
+		
+		$("#backtotop").totop();
+		
+		
+	});
+
+/*鼠标上移显示*/
+$(function(){
+//hover start
+$("#32").hover(function(){
+	$(this).oneTime(50,function(){ 
+		$(this).addClass("hover");
+  });
+},function(){      
+  $(this).oneTime(50,function(){ 
+  	$("#cp_list").stopTime();
+  	$(this).removeClass("hover");
+  });     
+});
+//hover end 
+//hover start
+$("#35").hover(function(){
+	$(this).oneTime(50,function(){ 
+		$(this).addClass("hover");
+  });
+},function(){      
+  $(this).oneTime(50,function(){ 
+  	$("#cp_list").stopTime();
+  	$(this).removeClass("hover");
+  });
+});
+//hover end 
+});
+</script>
+<script id="_da" src="__TMPL__Public/js/i.js" async="" charset="utf-8"></script>
+

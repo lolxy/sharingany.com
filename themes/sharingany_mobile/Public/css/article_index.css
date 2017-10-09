@@ -1,0 +1,22 @@
+.article_box .title{
+	padding:.4rem .5rem;
+}
+.article_box .top_1{
+	font-size:.64rem;
+	margin-bottom:.2rem;
+	font-weight:400;
+}
+.article_box .time{font-size:12px;color:#999;}
+.article_box .content{
+	padding:.5rem;
+	overflow:hidden;
+}
+.article_box .content p{
+	line-height:1.5;
+	font-family:'Microsoft YaHei';
+	margin:.4rem 0;
+	font-size:.64rem;
+}
+.article_box .content img{
+	max-width:100%;
+}

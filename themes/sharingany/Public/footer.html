@@ -1,0 +1,89 @@
+{:hook('footer')}
+<div class="ftw">
+<div id="ftbox">
+	<div id="ft">
+		<dl class="f_1 dl1">
+			<dt class="end_1">
+			    <img src="__TMPL__Public/images/end_1.png">
+				<div class="cpn_name">
+					{$company_name}
+				</div>
+			</dt>
+		</dl>
+		<dl class="f_1 dl2">
+			<dt class="end_2">
+				<p class="_link">服务热线</p>
+				<p class="lianxi_1">{$service_tel}</p>
+				<p class="_link">商务合作</p>
+                <p class="shouqian swhz"><span>{$shangwuhezuo}</span></p>
+			</dt>
+		</dl>
+		<dl class="f_1 dl3">
+		<div class="_link_1">
+				
+				<p class="shouqian footqq"><a id="qyqq" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$company_qq}&site=qq&menu=yes" title="点击联系QQ"><span>企业QQ：{$company_qq}</span></a></p>
+				<p class="shouqian footemail"><span>企业邮箱：{$company_email}</span></p>
+				<p class="shouqian footadd"><span>{$company_main_address}</span></p>
+				<p class="shouqian footnone"><span> {$company_sub_address}</span></p>
+		</div>
+				
+	</dl>
+	<div class="clear"></div>
+	</div>
+</div>
+<div class="clear"></div>
+<div id="ftbox2">
+  <div class="box">
+  	<p>
+	  	{$site_copyright}&nbsp;{$site_icp}
+	</p>
+  </div>
+</div>
+		</div>
+		<div class="float-box simple call" float-box="box" style="bottom: 50px; right: 20px;">
+			<span class="btn-2">
+				<a id="qqbtn2" target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={$company_qq}&site=qq&menu=yes" title="在线咨询"></a>
+			</span>
+			<div class="blank"></div>
+			<span class="btn-3">
+			<a alt="点我关掉" href="javascript:void(0);">
+				<img src="{:sp_get_asset_upload_path($site_erweima)}" style="max-width:100px;">
+            </a>
+			</span>
+			<div class="blank"></div>
+			<span class="gotot" backtop="box" style="display: none;">
+				<a href="javascript:;"></a>
+			</span>
+	</div>
+	<!-- 侧边 float-box eng -->
+<!--<div id="footer">
+	<div class="links">
+		<php>$links=sp_getlinks();</php>
+		<foreach name="links" item="vo">
+			<a href="{$vo.link_url}" target="{$vo.link_target}">{$vo.link_name}</a>
+		</foreach>
+	</div>
+	<p>
+		Made by <a href="http://www.thinkcmf.com" target="_blank">ThinkCMF</a>
+		Code licensed under the 
+		<a href="http://www.apache.org/licenses/LICENSE-2.0" rel="nofollow" target="_blank">Apache License v2.0</a>.
+		<br />
+		Based on 
+		<a href="http://getbootstrap.com/2.3.2/" target="_blank">Bootstrap</a>.
+		Icons from 
+		<a href="http://fortawesome.github.com/Font-Awesome/" target="_blank">Font Awesome</a>
+	</p>
+</div>
+<div id="backtotop">
+	<i class="fa fa-arrow-circle-up"></i>
+</div>-->
+{$site_tongji}
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?cebfbdd88ef2a80b5d0576663646d620";
+  var s =document.getElementsByTagName("script")[0]; 
+ s.parentNode.insertBefore(hm, s);
+})();
+</script>

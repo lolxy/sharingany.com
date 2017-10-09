@@ -1,0 +1,28 @@
+.honor-tab{
+	padding:.4rem;
+}
+.honor-tab ul{
+	height:1rem;
+	border-radius:5px;
+	overflow: hidden;
+	border:1px solid #e60012;
+}
+.honor-tab ul li{
+	font-size:.52rem;
+	text-align: center;
+	color:#e60012;
+	line-height: 1rem;
+}
+.honor-tab ul li.active{
+	color:#fff;
+	background:#e60012;
+}
+.honor-info{
+	padding:0 .4rem .4rem;
+}
+.honor-info img{
+	width:100%;
+}
+#content-2{
+	display:none;
+}

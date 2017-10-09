@@ -1,0 +1,9 @@
+@font-face {
+  font-family: "iconfont";
+  src: url('http://www.fanwe.com/app/Tpl/new/wap/iconfont/iconfont.eot');
+  src: url('http://www.fanwe.com/app/Tpl/new/wap/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('http://www.fanwe.com/app/Tpl/new/wap/iconfont/iconfont.woff') format('woff'),
+  url('http://www.fanwe.com/app/Tpl/new/wap/iconfont/iconfont.ttf') format('truetype'),
+  url('http://www.fanwe.com/app/Tpl/new/wap/iconfont/iconfont.svg#iconfont') format('svg');
+
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+<style>
+.wrapper li{float: left;}
+</style>
+</head>
+<body>
+<tc_include file="Public:nav"/>
+<script>
+$(function(){
+	$(".showhide").bind('click',function(){
+		if($(this).next().attr('class')=='show'){
+				$(this).next().attr('class','');
+		}else{
+			$(this).next().attr('class','show');
+		}
+	});
+	$("#description_head li a").each(function(j){
+		$("#description #description_content div").css('border','none');
+			$(this).bind('click',function(){
+			$("#description_head li a").attr('class','');
+			$(this).attr('class','here');
+			$("#description #description_content div").css('display','none');
+			$("#description #description_content div").get(j).style.display='block';
+		});
+	});
+});
+</script> 
+<link href="__TMPL__Public/css/peizi.css" type="text/css" rel="stylesheet">
+<php>
+$service_ads=sp_getslide("service_ads");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<!--<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($service_ads[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>-->
+<div class="blank30"></div>
+
+	<div class="all_check all_check_0 wrapper">
+		<php>
+        echo htmlspecialchars_decode($product);
+        </php>
+	</div>
+    
+    <div class="clear"></div>
+    
+    <div class="wrapper">  
+        <php>
+        echo htmlspecialchars_decode($post_content);
+        </php>
+	</div>
+
+
+<div class="clear"></div>
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+<script type="text/javascript" src="__TMPL__Public/js/j.js"></script>
+</body>
+</html>

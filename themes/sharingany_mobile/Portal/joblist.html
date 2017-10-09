@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>{$name} {$seo_title} {$site_name}</title>
+	<meta name="keywords" content="{$seo_keywords}" />
+	<meta name="description" content="{$seo_description}">
+    <tc_include file="Public:head" />
+    <style>
+    .fzlc{background-color: #fff;}
+	.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+    </style>
+</head>
+<body>
+<tc_include file="Public:top" />
+<tc_include file="Public:scripts" />
+<link href="__TMPL__Public/css/job.css" type="text/css" rel="stylesheet">
+<div id="about-nav" class="split-line">
+	<ul class="flex-box">
+		<li class="flex-1"><a href="{:U('page/index',array('id'=>1))}l">众享简介</a></li>
+		<li class="flex-1"><a href="{:U('page/index',array('id'=>4))}">联系我们</a></li>
+		<li class="flex-1 active"><a href="{:U('list/index',array('id'=>5))}">加入我们</a></li>
+	</ul>
+</div>
+	<php>
+$humanResource=sp_getslide("mobile_job_ads");
+</php>
+<div id="banner">
+	<div class="banner-list">
+		<ul>
+			<li><a href="javascript:void(0);"><img src="{:sp_get_asset_upload_path($humanResource[0]['slide_pic'])}"></a></li>
+		</ul>
+	</div>
+</div>
+<script>
+	$(document).ready(function(){
+	itemchange();
+	
+	$(".chang_nav_2 li").click(function(){
+		$(this).addClass("current").siblings().removeClass("current");
+		$(this).parents(".successlink").find(".job_con_all .job_con").eq($(this).attr("rel")).addClass("show").siblings().removeClass("show");
+	});
+	
+	$(".job_table_title").click(function(){
+		$(this).find(".Arrow").toggleClass("current");
+		$(this).siblings(".detail").toggle();
+	});
+});
+function itemchange(){
+	$("#add_items li").bind("click",function(){
+	    $("#add_items li").removeClass("active");
+	   $(this).addClass("active");
+	   var idx = $(this).attr("rel");
+	   $(".tab-change").fadeOut();
+	   $(".tab-change[rel='"+idx+"']").fadeIn(); 
+	});
+	}
+</script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(".abouttit").bind('click',function(){
+		if ($(".z-click").hasClass("z-up")) {
+    		$(".z-click").removeClass("z-up");
+    		$(".Navigation_block").removeClass("z-ht");
+		}else{
+			$(".z-click").addClass("z-up");
+    		$(".Navigation_block").addClass("z-ht");
+		};
+    });
+});
+$(window).scroll(function(){
+     var x=$(document).scrollTop();
+    if(x>50){ 
+     //在wap，滚动条是弹性的，没有个定性，会跳来跳去的
+        $(".Navigation_block").addClass("pf");
+        $(".Navigation_block").css('top',0);
+        $(".z-click").css('position',"fixed");
+    }
+    else{
+        $(".Navigation_block").removeClass("pf");
+        $(".Navigation_block").css('margin-top',0);
+        $(".z-click").css('position',"relative");
+        }; 
+});
+</script>
+<div class="fzlc">
+<div class="clearfix successlink tab-change" style="display:block" rel="1">
+	<div class="job_title">
+		<ul>
+		<li style="width:43.33%">职位名称</li>
+		<li>职位类别</li>
+		<li style="width:23.33%">招聘人数</li>
+		</ul>
+	</div>
+	<div class="job_con show">
+            <php>
+                $id = 5;
+                $lists = sp_sql_posts_bycatid(5,"order:post_date DESC;");
+            </php>
+          <div class="job_con show" rel="{$k+1}">
+            <dl>
+				<volist name="lists" id="vos">
+                <php>
+                $termss=sp_get_term($vos['term_id']);
+                $catename=$termss['name'];
+                </php>
+              <dd>
+                <div class="job_table_title">
+                  <ul class="clearfix">
+                  <li style="width:43.33%" >{$vos['post_title']}</li><li>{$catename}</li><li style="width:23.33%">{$vos.zp_count}<span class="Arrow"></li>
+                 </ul>
+                </div>
+                <div class="detail">
+                      <if condition="!empty($vos['zp_xuanshang'])">
+                      <div class="shangtip">
+                      <span>【悬赏招聘】</span>
+                      {$vos.zp_xuanshang}
+                      </div>
+                      </if>
+                   <h6>【工作职责】</h6>
+                   <p>
+                  		{$vos.zp_zhize}
+                   </p>
+                    <h6>【岗位要求】</h6>
+                   <p>
+                    {$vos.zp_gangwei}
+                    </p>
+                    <if condition="!empty($vos['zp_xssm'])">
+                    <h6>【悬赏说明】</h6>
+                   <p>
+                    {$vos.zp_xssm}
+                    </p>
+                     </if>
+                </div>
+              </dd>
+              </volist>
+            </dl>
+          </div> 
+	</div>
+</div><!--successlink end -->
+</div>
+  <tc_include file="Public:footer" /> 
+<!-- JavaScript -->
+<tc_include file="Public:scripts" />
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+<style>
+.contactwrapper{background-color: #fff;}
+.swhebox{color:#666666;padding: 10px;}
+.swhebox .email{overflow: hidden;font-size: 14px;line-height: 28px;color:#999999;}
+.swhebox .swhz p{font-size: 14px;line-height: 28px;}
+.swhebox .swhz p.lx_telep{color:#999999;}
+</style>
+</head>
+<body>
+<tc_include file="Public:top" />
+<script src="http://api.map.baidu.com/api?v=1.3"></script>
+<link href="__TMPL__Public/css/contact_us.css" type="text/css" rel="stylesheet">
+<div id="about-nav" class="split-line">
+	<ul class="flex-box">
+		<li class="flex-1"><a href="{:U('page/index',array('id'=>1))}l">众享简介</a></li>
+		<li class="flex-1 active"><a href="{:U('page/index',array('id'=>4))}">联系我们</a></li>
+		<li class="flex-1 "><a href="{:U('list/index',array('id'=>5))}">加入我们</a></li>
+	</ul>
+</div>
+<div class="contactwrapper">
+	    <section class="contact-hd">
+            <h1 class="main-tit">联系<span class="txt-main">我们</span></h1>
+            <h2 class="s-tit">{$company_name}</h2>
+        </section>
+        
+        <section class="address">
+            <p class="add-hd"><i class="iconfont">&#xe613;</i>公司地址</p>
+            <p class="add-info">{$company_sub_address}</p>
+            <p class="add-info">{$company_main_address}</p> 
+            <div class="add-tab">
+                <ul class="flex-box">
+                    <li class="flex-1 active" id="fuzhou">仓山</li>
+                    <li class="flex-1" id="chongqing">马尾</li>
+                </ul>
+            </div>
+        </section>
+        <div class="map" style="margin-bottom:20px;">
+            <div class="imgbox fuzhou"><img alt="图片无法显示哦~" src="__TMPL__Public/images/fz_gulou.png"></div>
+            <div class="imgbox chongqing"><img alt="图片无法显示哦~" src="__TMPL__Public/images/fz_mawei.png"></div>
+        </div>
+        
+        
+        <section class="contact-way flex-box">
+            <div class="service-phone">
+                <p><i class="iconfont">&#xe611;</i>全国客服热线</p>
+                <a class="txt-main" href="tel:{$service_tel}">{$service_tel}</a>
+            </div>
+            <p class="t_r flex-1 code-txt">关注众享智联<br>了解更多资讯<br>查看产品演示</p>
+            <div class="imgbox code"><img src="{:sp_get_asset_upload_path($site_erweima)}" alt=""></div>
+        </section>
+        
+        <section class="swhebox">
+            <div class="email">
+                <div class="lx_email f_l">邮箱：{$company_email}</div>
+            </div>	
+            <div class="swhz">
+                <p>商务合作</p>
+                <p class="lx_telep">{$shangwuhezuo}</p>
+            </div>
+        </section>
+
+</div>
+<tc_include file="Public:footer"/>
+<tc_include file="Public:scripts"/>
+<script type="text/javascript" src="__TMPL__Public/js/contact_us.js"></script>
+</body>
+</html>

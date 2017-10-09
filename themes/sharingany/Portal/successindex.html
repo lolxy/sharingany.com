@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{$site_seo_title} {$site_name}</title>
+<meta name="keywords" content="{$site_seo_keywords}" />
+<meta name="description" content="{$site_seo_description}">
+<tc_include file="Public:head" />
+<tc_include file="Public:scripts"/>
+</head>
+<body>
+<tc_include file="Public:nav" />
+<link href="__TMPL__Public/css/about.css" type="text/css" rel="stylesheet">
+<!--.............滚动的广告<script type="text/javascript" src="./app/Tpl/new/coupon/js/adv.js"></script>..............-->
+	<php>
+$company_case=sp_getslide("company_case");
+</php>
+<div class="blank"></div>
+<style type="text/css">
+.nav_banner {
+  width: 100%;
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  height:283px;
+}
+</style>
+<div class="nav_banner" style="background: url({:sp_get_asset_upload_path($company_case[0]['slide_pic'])}) no-repeat center 0 #f8f3f1;"></div>
+<div class="blank30"></div>
+ <div class="clearfix warp">
+	<div class="f_l Navigation_block">
+	<h6>成功案例</h6>
+	<ul id="add_items">
+		<?php
+         $term_id=4;
+         $terms=sp_get_child_terms($term_id); //获取子分类信息
+        ?>
+	<foreach name="terms" item="vo" key="k">
+        <li rel="{$k}" <if condition='$k eq 0'>class="current"</if>>
+            <span class="f_l">{$vo.name}</span>
+            <span class="f_r ico">&gt;</span>
+		</li>
+    </foreach>
+	</ul>
+	</div>
+	<div class="f_r w977">
+	    <div class="fzlc">
+	    	<div class="title successtitle">
+				<p>O2O服务类</p>
+	    	</div>
+	    	<div class="blank15"></div>
+            <foreach name="terms" item="vo" key="k">
+                <div class="successlink tab-change common-show" rel="{$k}" style="display:<if condition='$k eq 0'>block<else/>none</if>;">
+                    <div class="fff anlibox">
+                        <div class="clearfix" style="width:100%;overflow: hidden;">
+                            <ul>
+                                <php>
+                                $id = $vo['term_id'];
+                                $anlilist=sp_sql_posts("cid:$id;field:tid,term_id,post_url,smeta;order:istop desc,listorder asc,post_modified desc;");
+                        </php>
+                                <foreach name="anlilist" item="vo">
+                                <php>$smeta=json_decode($vo['smeta'],true);</php>
+                                <li class="f_l link">
+                                    <div class="linkct">
+                                    <if condition="$vo['post_url'] neq null">
+                                    <a href="{$vo['post_url']}" target="_blank">
+                                    </if>
+                                        <if condition="empty($smeta['thumb'])"> 
+                                            <img src="__TMPL__Public/images/default_tupian1.png" class="img-responsive" alt="{$vo.post_title}"/>
+                                        <else /> 
+                                            <img src="{:sp_get_asset_upload_path($smeta['thumb'])}" class="img-responsive img-thumbnail" alt="{$vo.post_title}" />
+                                        </if>
+                                    <if condition="$vo['post_url'] neq null">
+                                    </a>	
+                                    </if>
+                                    </div>
+                                </li>
+                                </foreach>
+                            </ul>
+                        </div>
+                        <div class="blank"></div>
+                    </div>
+                </div><!--successlink end -->
+            </foreach>
+	    </div>
+	</div>
+ </div>
+ <div class="btop"></div>
+ <div class="blank30"></div>
+ <div class="blank30"></div>
+<tc_include file="Public:footer" />
+</body>
+</html>
