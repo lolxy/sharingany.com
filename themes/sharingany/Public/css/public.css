@@ -510,13 +510,18 @@ visibility:hidden;
 .float-box span { border-bottom: 1px solid #dfe6e9; padding: 4px 0; display: block; }
 .float-box span.btn-1 { padding-top: 0; }
 .float-box span.btn-3 { border-bottom: 0; padding-bottom: 0; }
-.float-box span.btn-3 img{
+.float-box span.btn-3 img,.float-box span.btn-2 img{
 	position: absolute;
 	width: 0px;
 	height: 0px;
 	bottom: 0px;
 	right: 61px;
 	background: #df9768;
+	transition:all ease-in-out .5s;
+}
+.float-box span.btn-2:hover img{
+	width: 100px;
+	height: 100px;
 }
 .float-box span.btn-1 a { background-position: -15px -4px; }
 .float-box span.btn-2 a { background-position: -15px -44px; }
@@ -1226,3 +1231,7 @@ font-family: "黑体";
 	height: 80px;
     margin: 0 auto;
 }
+
+.ewmbox{position:absolute;width: 80px;height: 80px;overflow: hidden;left: 50%;bottom: 120px;margin-left: 10px;}
+.ewmbox img{max-width:100%;height: auto;}
+.wx-top,.wx-bottom{height: 125px;}
